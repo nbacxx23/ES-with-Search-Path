@@ -40,10 +40,12 @@ def ES_search_path(fun, lbounds, ubounds, budget):
     E_muldim_normal = math.sqrt(n)*(1-1/(4*n)+1/(21*n*n))
     
     while h==0 and budget>0 :
-        z = np.random.multivariate_normal(mean, I, (lamda, n))
+        z = np.random.multivariate_normal(mean, I, lamda)
 
-        for i in xrange(lamda):
-            x_k[i] = x_final + z[i]*sigma
+        x = np.array(np.ones((lamda,n)))*x_final
+        
+        x_k = x + z*sigma
+        
         p = np.concatenate((x_k, sel_u_best(u,x_k)), axis = 0)   # add the selected parents to the original population to complete recombination and parent update
         p = sel_u_best(u, p)                                     # select the u best solution to keep the population size constant
         
