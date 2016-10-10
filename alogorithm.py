@@ -41,16 +41,18 @@ def ES_search_path(fun, lbounds, ubounds, budget):
     
     while h==0 and budget>0 :
         z = np.random.multivariate_normal(mean, I, (lamda, n))
+
         for i in xrange(lamda):
-            x_k[i] = z[i] + x_final*sigma
+            x_k[i] = x_final + z[i]*sigma
         p = np.concatenate((x_k, sel_u_best(u,x_k)), axis = 0)   # add the selected parents to the original population to complete recombination and parent update
         p = sel_u_best(u, p)                                     # select the u best solution to keep the population size constant
+        
         "update the search path"
         s_sig = (1-c_sig)*s_sig + math.sqrt(c_sig*(2-c_sig))*(math.sqrt(u)/u)*(z.sum(axis=0))
         "update the step size"
         sigma = sigma * np.exp((1/d_i)*((abs(s_sig)/ E_half_normal_dis)-1))*math.exp((c_sig/d)*((np.linalg.norm(s_sig)/E_muldim_normal)-1))
         
-        x = np.sum(x_k,axis = 0)/u
+        x = np.sum(p,axis = 0)/u
         h = happy(x, x_final)
         x_final = x
         budget = budget - 1
