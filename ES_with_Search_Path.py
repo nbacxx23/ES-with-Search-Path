@@ -231,7 +231,7 @@ def happy(x,x_final,fun):
     When the difference of the last two resulte solutions is not bigger than the threshold, we consider
     the resulte arrives the convergence(happy)
     """
-    if abs(fun(x)-fun(x_final)) <= 0.00000001 :
+    if abs(fun(x)-fun(x_final)) <= 0.000000001 :
         return 1
     else:
         return 0        
