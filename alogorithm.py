@@ -35,7 +35,7 @@ def ES_search_path(fun, lbounds, ubounds, budget):
     sigma = np.ones(n)*0.1                                  # initialize the step-size
     x_k = np.random.uniform(lbounds, ubounds,(lamda,n))     # initialize the solution(x-vector)
     
-    x_final = np.sum(x_k, axis=0)/u                          # the final solution vector after the optimization process
+    x_final = np.sum(x_k, axis=0)/lamda                          # the final solution vector after the optimization process
 
     h = 0                                                   # stop criterion--if happy h=1,otherwise h=0
     
