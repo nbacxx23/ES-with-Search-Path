@@ -352,8 +352,8 @@ current_batch = 1      # 1..number_of_batches
 ##############################################################################
 SOLVER = ES_search_path
 #SOLVER = my_solver # fmin_slsqp # SOLVER = cma.fmin
-suite_name = "bbob-biobj"
-# suite_name = "bbob"
+#suite_name = "bbob-biobj"
+suite_name = "bbob"
 suite_instance = "year:2016"
 suite_options = ""  # "dimensions: 2,3,5,10,20 "  # if 40 is not desired
 observer_name = default_observers()[suite_name]
